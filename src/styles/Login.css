@@ -1,0 +1,185 @@
+.login-page {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(120deg, #f5f0ff, #eef4ff);
+  font-family: "Segoe UI", sans-serif;
+}
+
+.login-card {
+  width: 420px;
+  background: #ffffff;
+  border-radius: 22px;
+  padding: 40px;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.12);
+}
+
+.logo-box {
+  width: 70px;
+  height: 70px;
+  background: linear-gradient(135deg, #7c3aed, #6366f1);
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+}
+
+.logo-box img {
+  width: 40px;
+}
+
+.title {
+  text-align: center;
+  margin-top: 18px;
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.subtitle {
+  text-align: center;
+  color: #6b7280;
+  margin-bottom: 25px;
+}
+
+.sound-box {
+  background: #f3f6ff;
+  border-radius: 14px;
+  padding: 14px 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+
+.label {
+  font-weight: 600;
+  margin-top: 14px;
+  display: block;
+}
+
+.input {
+  width: 100%;
+  padding: 14px;
+  margin-top: 6px;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  font-size: 15px;
+}
+
+.password-box {
+  position: relative;
+}
+
+.eye {
+  position: absolute;
+  right: 15px;
+  top: 16px;
+  cursor: pointer;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 16px 0;
+}
+
+.remember {
+  font-size: 14px;
+}
+
+.forgot {
+  color: #7c3aed;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.login-btn {
+  width: 100%;
+  padding: 15px;
+  border: none;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #9333ea, #2563eb);
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 10px 25px rgba(99, 102, 241, 0.4);
+  transition: transform 0.2s;
+}
+
+.login-btn:hover {
+  transform: translateY(-2px);
+}
+
+.or {
+  text-align: center;
+  margin: 20px 0;
+  color: #9ca3af;
+}
+
+.signup {
+  text-align: center;
+  font-size: 14px;
+}
+
+.signup span {
+  color: #7c3aed;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.tip {
+  margin-top: 18px;
+  background: #eef6ff;
+  padding: 12px;
+  border-radius: 12px;
+  text-align: center;
+  font-size: 14px;
+}
+
+/* Toggle Switch */
+.switch {
+  position: relative;
+  width: 46px;
+  height: 24px;
+}
+
+.switch input {
+  display: none;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  background: #c7d2fe;
+  border-radius: 20px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transition: 0.3s;
+}
+
+.slider::before {
+  content: "";
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  background: white;
+  border-radius: 50%;
+  left: 3px;
+  top: 3px;
+  transition: 0.3s;
+}
+
+.switch input:checked + .slider {
+  background: #2563eb;
+}
+
+.switch input:checked + .slider::before {
+  transform: translateX(22px);
+}
