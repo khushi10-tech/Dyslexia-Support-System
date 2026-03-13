@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link} from "react-router-dom";
 import "../styles/Login.css";
 
 const Login = () => {
@@ -81,7 +81,7 @@ const Login = () => {
         <div className="or">or</div>
 
         <p className="signup">
-          Don’t have an account? <span>Sign up for free</span>
+            Don’t have an account? <Link to="/signup">Sign up for free</Link>
         </p>
 
         <div className="tip">
