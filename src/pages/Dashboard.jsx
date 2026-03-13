@@ -1,6 +1,23 @@
+
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 export default function Dashboard() {
+
+const [stats, setStats] = useState({
+ lessons: 0,
+ games: 0,
+ accuracy: 0
+});
+
+useEffect(() => {
+ fetch("http://localhost:5000/api/game/stats")
+ .then(res => res.json())
+ .then(data => {
+   setStats(data);
+ })
+ .catch(err => console.log(err));
+}, []);
 
 return (
 
@@ -23,17 +40,17 @@ Continue improving your reading and learning skills.
 
 <div className="bg-white shadow rounded-xl p-6">
 <h2 className="text-lg font-semibold">Lessons Completed</h2>
-<p className="text-2xl font-bold text-purple-600 mt-2">12</p>
+<p className="text-2xl font-bold text-purple-600 mt-2">{stats.lessons}</p>
 </div>
 
 <div className="bg-white shadow rounded-xl p-6">
 <h2 className="text-lg font-semibold">Games Played</h2>
-<p className="text-2xl font-bold text-blue-600 mt-2">25</p>
+<p className="text-2xl font-bold text-blue-600 mt-2">{stats.games}</p>
 </div>
 
 <div className="bg-white shadow rounded-xl p-6">
 <h2 className="text-lg font-semibold">Accuracy</h2>
-<p className="text-2xl font-bold text-green-600 mt-2">87%</p>
+<p className="text-2xl font-bold text-green-600 mt-2">{stats.accuracy}%</p>
 </div>
 
 </div>
@@ -158,8 +175,7 @@ Play
 
 </div>
 
-
 </div>
 
 );
-} 
+}

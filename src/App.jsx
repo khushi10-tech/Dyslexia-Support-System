@@ -1,5 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-
+import Login from "./pages/Login";
+import Home from "./pages/Home";
+import Avtar from "./pages/Avtar";
 import Sidebar from "./components/Sidebar";
 import Dashboard from "./pages/Dashboard";
 import Lessons from "./pages/lessons";   
@@ -19,13 +21,14 @@ return (
 
 <div style={{display:"flex"}}>
 
-<Sidebar />
 
 <div style={{flex:1, padding:"20px"}}>
 
 <Routes>
 
-<Route path="/" element={<Dashboard />} />
+<Route path="/" element={<Home />} />
+<Route path="/login" element={<Login />} />
+<Route path="/Avtar" element={<Avtar />} />
 <Route path="/dashboard" element={<Dashboard />} />
 <Route path="/lessons" element={<Lessons />} />
 <Route path="/achievements" element={<Achievements />} />
@@ -35,6 +38,8 @@ return (
 <Route path="/word-prediction-game" element={<WordPredictionGame />} />
 <Route path="/pronunciation-game" element={<PronunciationGame />} />
 <Route path="/scramble" element={<WordScramble />} />
+<Route path="/Sidebar" element={<Sidebar />} />
+
 
 </Routes>
 

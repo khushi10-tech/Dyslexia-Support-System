@@ -73,7 +73,7 @@ const Login = () => {
         {/* Login Button */}
         <button
           className="login-btn"
-          onClick={() => navigate("/avatar")}
+          onClick={() => navigate("/Avtar")}
         >
           Login to Learn 🚀
         </button>
