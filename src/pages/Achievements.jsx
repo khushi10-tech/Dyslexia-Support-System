@@ -1,31 +1,33 @@
+import "../styles/Achievements.css";
+
 export default function Achievements() {
+  return (
+    <div className="achievements-page">
 
-return (
+      <h1 className="achievements-title">Achievements</h1>
 
-<div className="p-8">
+      <div className="badges-grid">
 
-<h1 className="text-3xl font-bold mb-6">
-Achievements
-</h1>
+        <div className="badge-card">
+          <div className="badge-icon">🏆</div>
+          <div className="badge-title">Top Learner</div>
+          <div className="badge-desc">Completed 10 lessons</div>
+        </div>
 
-<div className="grid grid-cols-3 gap-6">
+        <div className="badge-card">
+          <div className="badge-icon">⭐</div>
+          <div className="badge-title">Star Student</div>
+          <div className="badge-desc">High accuracy score</div>
+        </div>
 
-<div className="bg-white p-6 rounded-xl shadow">
-🏆 Week Warrior
-</div>
+        <div className="badge-card">
+          <div className="badge-icon">🎯</div>
+          <div className="badge-title">Perfect Score</div>
+          <div className="badge-desc">100% in a lesson</div>
+        </div>
 
-<div className="bg-white p-6 rounded-xl shadow">
-⭐ Speed Reader
-</div>
+      </div>
 
-<div className="bg-white p-6 rounded-xl shadow">
-🎯 Perfect Score
-</div>
-
-</div>
-
-</div>
-
-);
-
+    </div>
+  );
 }

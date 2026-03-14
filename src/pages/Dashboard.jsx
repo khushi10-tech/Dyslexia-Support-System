@@ -1,56 +1,80 @@
-
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import "../styles/Dashboard.css";
 
 export default function Dashboard() {
 
-const [stats, setStats] = useState({
- lessons: 0,
- games: 0,
- accuracy: 0
-});
-
-useEffect(() => {
- fetch("http://localhost:5000/api/game/stats")
- .then(res => res.json())
- .then(data => {
-   setStats(data);
- })
- .catch(err => console.log(err));
-}, []);
-
 return (
 
-<div className="p-8">
+<div className="dashboard">
 
-{/* Header */}
+{/* Sidebar */}
 
-<h1 className="text-3xl font-bold mb-2">
-Welcome Back 👋
-</h1>
+<div className="sidebar">
 
-<p className="text-gray-500 mb-8">
+<h2 className="logo">LearnSmart</h2>
+
+<ul>
+
+<li>
+<Link to="/dashboard">Dashboard</Link>
+</li>
+
+<li>
+<Link to="/lessons">My Lessons</Link>
+</li>
+
+<li>
+<Link to="/achievements">Achievements</Link>
+</li>
+
+<li>
+<Link to="/profile">Profile</Link>
+</li>
+
+<li>
+<Link to="/settings">Settings</Link>
+</li>
+
+</ul>
+
+<button className="logout">Logout</button>
+
+</div>
+
+
+{/* Main Content */}
+
+<div className="main">
+
+<h1 className="welcome">Welcome Back 👋</h1>
+
+<p className="subtitle">
 Continue improving your reading and learning skills.
 </p>
 
 
-{/* Stats Section */}
+{/* Stats */}
 
-<div className="grid grid-cols-3 gap-6 mb-10">
+<div className="stats">
 
-<div className="bg-white shadow rounded-xl p-6">
-<h2 className="text-lg font-semibold">Lessons Completed</h2>
-<p className="text-2xl font-bold text-purple-600 mt-2">{stats.lessons}</p>
+<div className="card">
+<h3>XP Points</h3>
+<p>2450</p>
 </div>
 
-<div className="bg-white shadow rounded-xl p-6">
-<h2 className="text-lg font-semibold">Games Played</h2>
-<p className="text-2xl font-bold text-blue-600 mt-2">{stats.games}</p>
+<div className="card">
+<h3>Achievements</h3>
+<p>24</p>
 </div>
 
-<div className="bg-white shadow rounded-xl p-6">
-<h2 className="text-lg font-semibold">Accuracy</h2>
-<p className="text-2xl font-bold text-green-600 mt-2">{stats.accuracy}%</p>
+<div className="card">
+<h3>Level</h3>
+<p>12</p>
+</div>
+
+<div className="card">
+<h3>Lessons Done</h3>
+<p>48</p>
 </div>
 
 </div>
@@ -58,47 +82,39 @@ Continue improving your reading and learning skills.
 
 {/* Continue Learning */}
 
-<h2 className="text-2xl font-bold mb-4">
-Continue Learning
-</h2>
+<h2 className="section-title">Continue Learning</h2>
 
-<div className="grid grid-cols-2 gap-6 mb-10">
+<div className="learning">
 
-<div className="bg-white shadow-md rounded-xl p-6">
+<div className="lesson">
 
-<h3 className="text-xl font-semibold mb-2">
-My Lessons
-</h3>
+<h3>Reading Adventures</h3>
 
-<p className="text-gray-500 mb-4">
-Practice reading and spelling lessons.
-</p>
+<p>Easy • 65% complete</p>
 
-<Link
-to="/lessons"
-className="bg-purple-600 text-white px-4 py-2 rounded"
->
-View Lessons
+<div className="progress-bar">
+<div className="progress progress1"></div>
+</div>
+
+<Link to="/lessons">
+<button className="start-btn">Start</button>
 </Link>
 
 </div>
 
 
-<div className="bg-white shadow-md rounded-xl p-6">
+<div className="lesson">
 
-<h3 className="text-xl font-semibold mb-2">
-Achievements
-</h3>
+<h3>Word Building</h3>
 
-<p className="text-gray-500 mb-4">
-Track badges and milestones.
-</p>
+<p>Medium • 40% complete</p>
 
-<Link
-to="/achievements"
-className="bg-yellow-500 text-white px-4 py-2 rounded"
->
-View Achievements
+<div className="progress-bar">
+<div className="progress progress2"></div>
+</div>
+
+<Link to="/lessons">
+<button className="start-btn">Start</button>
 </Link>
 
 </div>
@@ -108,68 +124,62 @@ View Achievements
 
 {/* AI Games */}
 
-<h2 className="text-2xl font-bold mb-4">
-AI Learning Games
-</h2>
+<h2 className="section-title">AI Learning Games</h2>
 
-<div className="grid grid-cols-3 gap-6">
+<div className="games">
 
-<div className="bg-white shadow rounded-xl p-6">
+<div className="game-card">
 
-<h3 className="font-semibold mb-2">
-Pronunciation AI
-</h3>
+<h3>Pronunciation AI</h3>
 
-<p className="text-gray-500 mb-4">
-Practice speaking words.
-</p>
+<p>Practice speaking words.</p>
 
-<Link
-to="/pronunciation"
-className="bg-blue-600 text-white px-4 py-2 rounded"
->
-Play
+<Link to="/pronunciation">
+<button className="play-btn">Play</button>
 </Link>
 
 </div>
 
 
-<div className="bg-white shadow rounded-xl p-6">
+<div className="game-card">
 
-<h3 className="font-semibold mb-2">
-Word Prediction
-</h3>
+<h3>Word Prediction</h3>
 
-<p className="text-gray-500 mb-4">
-Complete sentences using AI.
-</p>
+<p>Complete sentences using AI.</p>
 
-<Link
-to="/prediction"
-className="bg-green-600 text-white px-4 py-2 rounded"
->
-Play
+<Link to="/prediction">
+<button className="play-btn green">Play</button>
 </Link>
 
 </div>
 
 
-<div className="bg-white shadow rounded-xl p-6">
+<div className="game-card">
 
-<h3 className="font-semibold mb-2">
-Letter Recognition
-</h3>
+<h3>Letter Recognition</h3>
 
-<p className="text-gray-500 mb-4">
-Identify confusing letters.
-</p>
+<p>Identify confusing letters.</p>
 
-<Link
-to="/letters"
-className="bg-orange-600 text-white px-4 py-2 rounded"
->
-Play
+<Link to="/letters">
+<button className="play-btn orange">Play</button>
 </Link>
+
+</div>
+
+</div>
+
+
+{/* Badges */}
+
+<h2 className="section-title">Recent Badges</h2>
+
+<div className="badges">
+
+<div className="badge">🏆 Week Warrior</div>
+
+<div className="badge">⭐ Speed Reader</div>
+
+<div className="badge">🎯 Perfect Score</div>
 
 </div>
 

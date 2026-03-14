@@ -1,22 +1,84 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+import axios from "axios";
 import "../styles/Login.css";
 
 const Login = () => {
-  const navigate = useNavigate();
-  const [soundOn, setSoundOn] = useState(true);
-  const [showPassword, setShowPassword] = useState(false);
 
+  const navigate = useNavigate();
+
+  const [identifier, setIdentifier] = useState("");
+  const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [soundOn, setSoundOn] = useState(false);
+
+  // -------------------------
+  // Text to Speech Function
+  // -------------------------
+  const speakText = (text) => {
+    const speech = new SpeechSynthesisUtterance(text);
+    speech.lang = "en-US";
+    speech.rate = 0.9;
+    window.speechSynthesis.speak(speech);
+  };
+
+  // -------------------------
+  // Toggle Sound Assistant
+  // -------------------------
   const handleSoundToggle = () => {
-    setSoundOn(!soundOn);
-    if (!soundOn) {
-      new Audio("/click.mp3").play();
+    const newState = !soundOn;
+    setSoundOn(newState);
+
+    if (newState) {
+      speakText(
+        "Welcome to LearnSmart. Please enter your username or email and password to login."
+      );
     }
   };
 
+  // -------------------------
+  // Login Function
+  // -------------------------
+  const handleLogin = async () => {
+
+    if (!identifier || !password) {
+      alert("Please enter username or email and password");
+      return;
+    }
+
+    try {
+
+      const response = await axios.post(
+        "http://localhost:5000/api/auth/login",
+        {
+          identifier,
+          password
+        }
+      );
+
+      console.log("Login Success:", response.data);
+
+      // Save user data
+      localStorage.setItem("user", JSON.stringify(response.data.user));
+
+      // Redirect to Avatar page
+      navigate("/Avtar");
+
+    } catch (error) {
+
+      console.error(error);
+      alert("Invalid login credentials");
+
+    }
+
+  };
+
   return (
+
     <div className="login-page">
+
       <div className="login-card">
+
         {/* Logo */}
         <div className="logo-box">
           <img src="/brain.png" alt="logo" />
@@ -27,7 +89,9 @@ const Login = () => {
 
         {/* Sound Assistance */}
         <div className="sound-box">
+
           <span>🔊 Sound Assistance</span>
+
           <label className="switch">
             <input
               type="checkbox"
@@ -36,44 +100,68 @@ const Login = () => {
             />
             <span className="slider"></span>
           </label>
+
         </div>
 
-        {/* Username */}
-        <label className="label">Username</label>
+        {/* Username or Email */}
+        <label className="label">Username or Email</label>
+
         <input
           type="text"
-          placeholder="Enter your username"
+          placeholder="Enter username or email"
           className="input"
+          value={identifier}
+          onChange={(e) => setIdentifier(e.target.value)}
+          onFocus={() =>
+            soundOn && speakText("Enter your username or email")
+          }
         />
 
         {/* Password */}
         <label className="label">Password</label>
+
         <div className="password-box">
+
           <input
             type={showPassword ? "text" : "password"}
             placeholder="Enter your password"
             className="input"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            onFocus={() =>
+              soundOn && speakText("Enter your password")
+            }
           />
+
           <span
             className="eye"
             onClick={() => setShowPassword(!showPassword)}
           >
             👁
           </span>
+
         </div>
 
         {/* Remember + Forgot */}
         <div className="row">
+
           <label className="remember">
             <input type="checkbox" /> Remember me
           </label>
-          <span className="forgot">Forgot password?</span>
+
+          <span
+            className="forgot"
+            onClick={() => navigate("/forgot-password")}
+          >
+            Forgot password?
+          </span>
+
         </div>
 
         {/* Login Button */}
         <button
           className="login-btn"
-          onClick={() => navigate("/Avtar")}
+          onClick={handleLogin}
         >
           Login to Learn 🚀
         </button>
@@ -81,14 +169,18 @@ const Login = () => {
         <div className="or">or</div>
 
         <p className="signup">
-          Don’t have an account? <span>Sign up for free</span>
+          Don’t have an account?{" "}
+          <Link to="/signup">Sign up for free</Link>
         </p>
 
         <div className="tip">
-          💡 Tip: Click the sound icon for audio help with reading
+          💡 Tip: Enable sound assistance for audio guidance
         </div>
+
       </div>
+
     </div>
+
   );
 };
 

@@ -1,0 +1,40 @@
+.achievements-page {
+  padding: 40px;
+  background: #f5f6fa;
+  min-height: 100vh;
+}
+
+.achievements-title {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 25px;
+}
+
+.badges-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.badge-card {
+  background: white;
+  border-radius: 12px;
+  padding: 25px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+.badge-icon {
+  font-size: 40px;
+  margin-bottom: 10px;
+}
+
+.badge-title {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.badge-desc {
+  color: gray;
+  font-size: 14px;
+}

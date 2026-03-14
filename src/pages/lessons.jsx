@@ -1,69 +1,63 @@
 import { Link } from "react-router-dom";
+import "../styles/Lessons.css";
 
-export default function Dashboard() {
+export default function Lessons() {
   return (
 
-<div className="flex min-h-screen bg-gray-100">
+<div className="dashboard">
 
 {/* Sidebar */}
 
-<div className="w-64 bg-white shadow-lg p-6">
+<div className="sidebar">
 
-<h1 className="text-2xl font-bold text-purple-600 mb-8">
-LearnSmart
-</h1>
+<h2 className="logo">LearnSmart</h2>
 
-<div className="mb-8">
-<p className="font-semibold">Learner</p>
-<p className="text-gray-500 text-sm">Level 12</p>
+<div className="user-info">
+<p className="user-name">Learner</p>
+<p className="user-level">Level 12</p>
 </div>
 
-<nav className="space-y-4">
+<ul className="menu">
 
-<Link to="/" className="block text-purple-600 font-semibold">
-Dashboard
-</Link>
+<li>
+<Link to="/dashboard">Dashboard</Link>
+</li>
 
-<Link to="/lessons" className="block text-gray-600 hover:text-purple-600">
-My Lessons
-</Link>
+<li>
+<Link to="/lessons">My Lessons</Link>
+</li>
 
-<Link to="/achievements" className="block text-gray-600 hover:text-purple-600">
-Achievements
-</Link>
+<li>
+<Link to="/achievements">Achievements</Link>
+</li>
 
-<Link to="/profile" className="block text-gray-600 hover:text-purple-600">
-Profile
-</Link>
+<li>
+<Link to="/profile">Profile</Link>
+</li>
 
-<Link to="/settings" className="block text-gray-600 hover:text-purple-600">
-Settings
-</Link>
+<li>
+<Link to="/settings">Settings</Link>
+</li>
 
-</nav>
+</ul>
 
 </div>
 
 
 {/* Main Content */}
 
-<div className="flex-1 p-8">
+<div className="main">
 
-{/* Header */}
-
-<div className="flex justify-between items-center mb-8">
+<div className="header">
 
 <div>
-<h1 className="text-3xl font-bold">
-Welcome back 👋
-</h1>
-
-<p className="text-gray-500">
+<h1>Welcome back 👋</h1>
+<p className="subtitle">
 Ready to continue your learning journey?
 </p>
 </div>
 
-<div className="bg-white px-6 py-3 rounded-xl shadow">
+<div className="streak">
 🔥 7 day streak
 </div>
 
@@ -72,30 +66,30 @@ Ready to continue your learning journey?
 
 {/* Stats */}
 
-<div className="grid grid-cols-4 gap-6 mb-10">
+<div className="stats">
 
-<div className="bg-white p-6 rounded-xl shadow">
-<p className="text-gray-500">XP Points</p>
-<h2 className="text-2xl font-bold">2,450</h2>
-<p className="text-purple-600 text-sm">+120 today</p>
+<div className="card">
+<p>XP Points</p>
+<h2>2,450</h2>
+<span className="purple">+120 today</span>
 </div>
 
-<div className="bg-white p-6 rounded-xl shadow">
-<p className="text-gray-500">Achievements</p>
-<h2 className="text-2xl font-bold">24</h2>
-<p className="text-yellow-500 text-sm">3 new</p>
+<div className="card">
+<p>Achievements</p>
+<h2>24</h2>
+<span className="yellow">3 new</span>
 </div>
 
-<div className="bg-white p-6 rounded-xl shadow">
-<p className="text-gray-500">Level</p>
-<h2 className="text-2xl font-bold">12</h2>
-<p className="text-green-500 text-sm">75% to next</p>
+<div className="card">
+<p>Level</p>
+<h2>12</h2>
+<span className="green">75% to next</span>
 </div>
 
-<div className="bg-white p-6 rounded-xl shadow">
-<p className="text-gray-500">Lessons Done</p>
-<h2 className="text-2xl font-bold">48</h2>
-<p className="text-blue-500 text-sm">6 this week</p>
+<div className="card">
+<p>Lessons Done</p>
+<h2>48</h2>
+<span className="blue">6 this week</span>
 </div>
 
 </div>
@@ -103,67 +97,43 @@ Ready to continue your learning journey?
 
 {/* Continue Learning */}
 
-<div className="grid grid-cols-2 gap-6">
+<div className="content-grid">
 
-<div className="bg-white p-6 rounded-xl shadow">
+<div className="learning-card">
 
-<h2 className="text-xl font-bold mb-4">
-Continue Learning
-</h2>
+<h2>Continue Learning</h2>
 
-{/* Reading */}
-
-<div className="mb-6">
-
-<div className="flex justify-between items-center">
+<div className="lesson-item">
 
 <div>
-<h3 className="font-semibold">Reading Adventures</h3>
-<p className="text-sm text-gray-500">
-Easy • 65% complete
-</p>
+<h3>Reading Adventures</h3>
+<p>Easy • 65% complete</p>
 </div>
 
-<Link
-to="/reading"
-className="bg-purple-600 text-white px-4 py-2 rounded"
->
-Start
+<Link to="/reading">
+<button className="start-btn">Start</button>
 </Link>
 
+<div className="progress-bar">
+<div className="progress progress65"></div>
 </div>
 
-<div className="w-full bg-gray-200 h-2 mt-2 rounded">
-<div className="bg-purple-600 h-2 w-2/3 rounded"></div>
-</div>
-
 </div>
 
 
-{/* Word Building */}
+<div className="lesson-item">
 
 <div>
-
-<div className="flex justify-between items-center">
-
-<div>
-<h3 className="font-semibold">Word Building</h3>
-<p className="text-sm text-gray-500">
-Medium • 40% complete
-</p>
+<h3>Word Building</h3>
+<p>Medium • 40% complete</p>
 </div>
 
-<Link
-to="/wordbuilding"
-className="bg-purple-600 text-white px-4 py-2 rounded"
->
-Start
+<Link to="/wordbuilding">
+<button className="start-btn">Start</button>
 </Link>
 
-</div>
-
-<div className="w-full bg-gray-200 h-2 mt-2 rounded">
-<div className="bg-green-500 h-2 w-1/2 rounded"></div>
+<div className="progress-bar">
+<div className="progress progress40"></div>
 </div>
 
 </div>
@@ -173,36 +143,13 @@ Start
 
 {/* Badges */}
 
-<div className="bg-white p-6 rounded-xl shadow">
+<div className="badge-card">
 
-<h2 className="text-xl font-bold mb-4">
-Recent Badges
-</h2>
+<h2>Recent Badges</h2>
 
-<div className="space-y-4">
-
-<div className="bg-gray-100 p-4 rounded">
-🏆 Week Warrior
-<p className="text-sm text-gray-500">
-7 day streak
-</p>
-</div>
-
-<div className="bg-gray-100 p-4 rounded">
-⭐ Speed Reader
-<p className="text-sm text-gray-500">
-100 words/min
-</p>
-</div>
-
-<div className="bg-gray-100 p-4 rounded">
-🎯 Perfect Score
-<p className="text-sm text-gray-500">
-All correct!
-</p>
-</div>
-
-</div>
+<div className="badge">🏆 Week Warrior</div>
+<div className="badge">⭐ Speed Reader</div>
+<div className="badge">🎯 Perfect Score</div>
 
 </div>
 
