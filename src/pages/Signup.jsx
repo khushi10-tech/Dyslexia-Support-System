@@ -1,4 +1,5 @@
 import { useState } from "react";
+import axios from "axios";
 
 export default function Signup() {
 
@@ -16,19 +17,22 @@ export default function Signup() {
   const [showPassword, setShowPassword] = useState(false);
 
   const handleChange = (e) => {
+
     const { name, value, type, checked } = e.target;
 
     setFormData({
       ...formData,
       [name]: type === "checkbox" ? checked : value
     });
+
   };
 
   const selectAvatar = (avatar) => {
     setFormData({ ...formData, avatar });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
+
     e.preventDefault();
 
     if (formData.password !== formData.confirmPassword) {
@@ -36,8 +40,33 @@ export default function Signup() {
       return;
     }
 
-    console.log(formData);
-    alert("Signup successful!");
+    if (!formData.agree) {
+      alert("Please accept terms and conditions");
+      return;
+    }
+
+    try {
+
+      const response = await axios.post(
+        "http://localhost:5000/api/auth/register",
+        {
+          name: formData.username,
+          email: formData.email,
+          password: formData.password
+        }
+      );
+
+      alert(response.data.message);
+
+      console.log("User Registered:", response.data);
+
+    } catch (error) {
+
+      console.error(error);
+      alert("Signup failed");
+
+    }
+
   };
 
   return (
@@ -45,7 +74,6 @@ export default function Signup() {
 
       <div className="bg-white w-full max-w-3xl rounded-3xl shadow-lg p-10">
 
-        {/* Title */}
         <div className="text-center mb-8">
           <h1 className="text-4xl font-bold text-purple-700">
             Join LearnSmart! 🎉
@@ -57,7 +85,6 @@ export default function Signup() {
 
         <form onSubmit={handleSubmit} className="space-y-6">
 
-          {/* Username */}
           <div>
             <label className="font-semibold">Choose a Username</label>
             <input
@@ -69,7 +96,6 @@ export default function Signup() {
             />
           </div>
 
-          {/* Email */}
           <div>
             <label className="font-semibold">Email Address</label>
             <input
@@ -81,9 +107,9 @@ export default function Signup() {
             />
           </div>
 
-          {/* Password */}
           <div>
             <label className="font-semibold">Create Password</label>
+
             <div className="flex">
               <input
                 type={showPassword ? "text" : "password"}
@@ -101,11 +127,12 @@ export default function Signup() {
                 👁
               </button>
             </div>
+
           </div>
 
-          {/* Confirm Password */}
           <div>
             <label className="font-semibold">Confirm Password</label>
+
             <input
               type="password"
               name="confirmPassword"
@@ -115,26 +142,26 @@ export default function Signup() {
             />
           </div>
 
-          {/* Avatar Picker */}
           <div>
             <label className="font-semibold">Pick Your Avatar</label>
 
             <div className="grid grid-cols-6 gap-4 mt-4">
               {avatars.map((avatar, index) => (
+
                 <button
                   key={index}
                   type="button"
                   onClick={() => selectAvatar(avatar)}
-                  className={`text-3xl p-4 rounded-xl border 
+                  className={`text-3xl p-4 rounded-xl border
                   ${formData.avatar === avatar ? "bg-purple-200" : "bg-gray-100"}`}
                 >
                   {avatar}
                 </button>
+
               ))}
             </div>
           </div>
 
-          {/* Terms */}
           <div className="flex items-center gap-2">
             <input
               type="checkbox"
@@ -146,14 +173,15 @@ export default function Signup() {
             </span>
           </div>
 
-          {/* Submit */}
           <button
+            type="submit"
             className="w-full bg-gradient-to-r from-purple-500 to-blue-500 text-white py-3 rounded-xl font-semibold"
           >
             Create My Account →
           </button>
 
         </form>
+
       </div>
     </div>
   );
