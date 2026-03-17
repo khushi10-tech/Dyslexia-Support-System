@@ -52,7 +52,8 @@ export default function Signup() {
         {
           name: formData.username,
           email: formData.email,
-          password: formData.password
+          password: formData.password,
+          avatar: formData.avatar
         }
       );
 
@@ -62,10 +63,15 @@ export default function Signup() {
 
     } catch (error) {
 
-      console.error(error);
-      alert("Signup failed");
+  console.error("Signup error:", error);
 
-    }
+  if (error.response && error.response.data.message) {
+    alert(error.response.data.message);
+  } else {
+    alert("Server error");
+  }
+
+}
 
   };
 
