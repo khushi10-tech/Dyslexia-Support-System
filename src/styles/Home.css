@@ -68,7 +68,7 @@ body {
   width: 100%;
   display: grid;
   grid-template-columns: 1.2fr 1fr;
-  gap: 70px;
+  gap: 50px;
   align-items: center;
 }
 
@@ -91,9 +91,9 @@ body {
 }
 
 .hero-text h1 {
-  font-size: 64px;
+  font-size: 56px;
   font-weight: 800;
-  line-height: 1.1;
+  line-height: 1.15;
   color: #111827;
 }
 
@@ -235,6 +235,10 @@ body {
   border-radius: 18px;
   padding: 20px;
   font-weight: 700;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end; /* push content down */
 }
 
 .stat-card h2 {
@@ -257,6 +261,14 @@ body {
 .stat-card.badges {
   background: #fff2df;
   color: #f97316;
+  display: flex;
+  flex-direction: column;
+  align-items: center;   
+  justify-content: center; 
+  text-align: center;
+}
+.stat-card.badges h2 {
+  margin-bottom: 2px;
 }
 
 /* AI BAR */

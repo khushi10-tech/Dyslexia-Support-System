@@ -1,4 +1,4 @@
-/* 🌈 Background */
+/*  Background */
 .signup-container {
   min-height: 100vh;
   display: flex;
@@ -9,7 +9,7 @@
   font-family: "Poppins", sans-serif;
 }
 
-/* 📦 Card */
+/*  Card */
 .signup-card {
   background: #fff;
   width: 100%;
@@ -20,7 +20,7 @@
   position: relative;
 }
 
-/* 🔊 Sound Button */
+/*  Sound Button */
 .sound-btn {
   position: absolute;
   top: 20px;
@@ -39,7 +39,7 @@
   transform: scale(1.05);
 }
 
-/* 🧠 Header */
+/*  Header */
 .signup-header {
   text-align: center;
   margin-bottom: 25px;
@@ -56,7 +56,7 @@
   margin-top: 6px;
 }
 
-/* 📋 Form */
+/*  Form */
 .signup-form {
   display: flex;
   flex-direction: column;
@@ -69,7 +69,7 @@
   color: #111827;
 }
 
-/* ✏️ Inputs */
+/*  Inputs */
 .signup-form input {
   width: 100%;
   padding: 12px 14px;
@@ -86,7 +86,7 @@
   box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.25);
 }
 
-/* 🔒 Password */
+/*  Password */
 .password-wrapper {
   display: flex;
   align-items: center;
@@ -109,7 +109,7 @@
   background: #d1d5db;
 }
 
-/* 🎭 Avatar */
+/*  Avatar */
 .avatar-grid {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
@@ -159,7 +159,7 @@
 }
 
 
-/* 🚀 Button */
+/*  Button */
 .signup-btn {
   margin-top: 10px;
   width: 100%;
@@ -179,7 +179,7 @@
   transform: translateY(-2px);
 }
 
-/* 📱 Responsive */
+/*  Responsive */
 @media (max-width: 600px) {
   .signup-card {
     padding: 25px;

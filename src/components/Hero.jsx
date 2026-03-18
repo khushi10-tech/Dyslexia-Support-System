@@ -52,11 +52,13 @@ const Hero = () => {
               {/* Middle cards */}
               <div className="dashboard-stats">
                 <div className="stat-card xp">
+
                   <h2>2,450</h2>
                   <p>XP Points</p>
                 </div>
 
                 <div className="stat-card badges">
+
                   <h2>24</h2>
                   <p>Badges</p>
                 </div>

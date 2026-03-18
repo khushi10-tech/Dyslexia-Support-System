@@ -81,7 +81,7 @@ const Login = () => {
 
         {/* Logo */}
         <div className="logo-box">
-          <img src="/brain.png" alt="logo" />
+          <img src="/Brain.jpg" alt="logo" />
         </div>
 
         <h1 className="title">LearnSmart</h1>
