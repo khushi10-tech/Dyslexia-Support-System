@@ -233,23 +233,26 @@ body {
 
 .stat-card {
   border-radius: 18px;
-  padding: 20px;
+  padding: 30px;
   font-weight: 700;
   position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end; /* push content down */
+  justify-content: flex-end;
+  align-items: flex-start;
+  text-align: left; /* push content down */
 }
-
 .stat-card h2 {
   font-size: 28px;
-  margin-bottom: 4px;
+  margin-bottom: 2px;
 }
 
 .stat-card p {
   font-size: 14px;
   font-weight: 600;
-}
+  margin-top: 2px;
+} 
+
 
 /* XP CARD */
 .stat-card.xp {
@@ -261,15 +264,9 @@ body {
 .stat-card.badges {
   background: #fff2df;
   color: #f97316;
-  display: flex;
-  flex-direction: column;
-  align-items: center;   
-  justify-content: center; 
-  text-align: center;
+  
 }
-.stat-card.badges h2 {
-  margin-bottom: 2px;
-}
+
 
 /* AI BAR */
 .dashboard-ai {
