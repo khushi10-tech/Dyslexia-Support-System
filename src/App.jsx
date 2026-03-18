@@ -31,6 +31,7 @@ return (
 <Route path="/forgot-password" element={<ForgotPassword />} />
  <Route path="/dashboard" element={<Dashboard />} /> 
 <Route path="/Avatar" element={<Avatar />} />
+<Route path="/dashboard" element={<Dashboard />} /> 
 <Route path="/signup" element={<Signup />} />
 <Route path="/lessons" element={<Lessons />} />
 <Route path="/achievements" element={<Achievements />} />
