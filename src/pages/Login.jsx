@@ -56,18 +56,35 @@ const Login = () => {
         }
       );
 
-      console.log("Login Success:", response.data);
+      if (response.data.success) {
 
-      // Save user data
-      localStorage.setItem("user", JSON.stringify(response.data.user));
+        const userData = response.data.user;
 
-      // Redirect to Avatar page
-      navigate("/Avtar");
+        console.log("Login Success:", userData);
+
+        // Save user in localStorage
+        localStorage.setItem("user", JSON.stringify(userData));
+
+        if (soundOn) {
+          speakText("Login successful. Redirecting to avatar selection.");
+        }
+
+         //go to dashboard
+         navigate("/dashboard");
+
+      } else {
+        alert(response.data.message);
+      }
 
     } catch (error) {
 
       console.error(error);
-      alert("Invalid login credentials");
+
+      if (error.response && error.response.data.message) {
+        alert(error.response.data.message);
+      } else {
+        alert("Server error. Please try again.");
+      }
 
     }
 
@@ -131,6 +148,11 @@ const Login = () => {
             onFocus={() =>
               soundOn && speakText("Enter your password")
             }
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                handleLogin();
+              }
+            }}
           />
 
           <span

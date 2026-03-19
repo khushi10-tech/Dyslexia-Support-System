@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import "../styles/Avtar.css";
 
 const avatars = [
@@ -17,31 +18,70 @@ const avatars = [
   { id: 12, emoji: "🐙", name: "Octopus", bg: "#B494FF" },
 ];
 
-export default function Avtar() {
+export default function Avatar() {
+
   const [selected, setSelected] = useState(avatars[0]);
   const navigate = useNavigate();
 
-  const startLearning = () => {
-    // optional: save avatar
-    localStorage.setItem("avatar", selected.name);
+  const startLearning = async () => {
 
-    navigate("/dashboard"); // or "/home"
+    try {
+
+      // 🔥 Get logged-in user
+      const user = JSON.parse(localStorage.getItem("user"));
+
+      if (!user) {
+        alert("User not logged in");
+        return;
+      }
+
+      // 🔥 API CALL to save avatar in DB
+      const res = await axios.post(
+        "http://localhost:5000/api/auth/update-avatar",
+        {
+          userId: user._id,
+          avatar: selected.emoji   // you can also store name if you want
+        }
+      );
+
+      if (res.data.success) {
+
+        // 🔥 Update localStorage user
+        localStorage.setItem("user", JSON.stringify(res.data.user));
+
+        // 🔥 Go to dashboard
+        navigate("/dashboard");
+
+      } else {
+        alert("Failed to save avatar");
+      }
+
+    } catch (error) {
+
+      console.error(error);
+      alert("Error saving avatar");
+
+    }
+
   };
 
   return (
     <div className="avatar-page">
       <div className="avatar-card">
+
         <div className="top-icon">✨</div>
 
         <h1>Choose Your Learning Buddy! 🎉</h1>
         <p className="subtitle">Pick an avatar that represents you</p>
 
+        {/* BIG AVATAR */}
         <div className="big-avatar" style={{ background: selected.bg }}>
           <span>{selected.emoji}</span>
         </div>
 
         <h2 className="avatar-name">{selected.name}</h2>
 
+        {/* AVATAR GRID */}
         <div className="avatar-grid">
           {avatars.map((a) => (
             <div
@@ -57,15 +97,25 @@ export default function Avtar() {
           ))}
         </div>
 
+        {/* BUTTONS */}
         <div className="buttons">
-          <button className="back-btn" onClick={() => navigate("/")}>
+
+          <button
+            className="back-btn"
+            onClick={() => navigate("/")}
+          >
             ← Back
           </button>
 
-          <button className="start-btn" onClick={startLearning}>
+          <button
+            className="start-btn"
+            onClick={startLearning}
+          >
             Start Learning! 🚀
           </button>
+
         </div>
+
       </div>
     </div>
   );

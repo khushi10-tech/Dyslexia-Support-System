@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Dashboard from "./pages/Dashboard";
-import Avtar from "./pages/Avtar";
+import Avatar from "./pages/Avatar";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import ForgotPassword from "./pages/ForgotPassword";
@@ -29,8 +29,9 @@ return (
 <Route path="/" element={<Home />} />
 <Route path="/Login" element={<Login />} />
 <Route path="/forgot-password" element={<ForgotPassword />} />
+ <Route path="/dashboard" element={<Dashboard />} /> 
+<Route path="/Avatar" element={<Avatar />} />
 <Route path="/dashboard" element={<Dashboard />} /> 
-<Route path="/Avtar" element={<Avtar />} />
 <Route path="/signup" element={<Signup />} />
 <Route path="/lessons" element={<Lessons />} />
 <Route path="/achievements" element={<Achievements />} />
