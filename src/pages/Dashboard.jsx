@@ -29,7 +29,11 @@ function Dashboard() {
         );
 
         if (res.data) {
-          setUser(res.data);
+          console.log("Dashboard API data:", res.data);
+          setUser({
+            ...storedUser,
+            ...res.data
+          });
         }
       } catch (err) {
         console.error("Failed to load dashboard:", err);

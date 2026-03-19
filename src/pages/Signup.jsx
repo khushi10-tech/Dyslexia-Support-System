@@ -75,6 +75,9 @@ export default function Signup() {
 
       console.log("User Registered:", response.data);
 
+      if (response.data.success) {
+        localStorage.setItem("user", JSON.stringify(response.data.user));
+      }
     } catch (error) {
       console.error(error);
       speak("Signup failed");
