@@ -1,8 +1,11 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import "../styles/Signup.css"; 
+import "../styles/Signup.css";
 
 export default function Signup() {
+
+  const navigate = useNavigate();
 
   const avatars = ["😊","🦁","🐼","🦊","🐯","🐸","🦄","🐨","🐷","🐶","🐱","🦉"];
 
@@ -73,6 +76,9 @@ export default function Signup() {
       alert(response.data.message);
 
       console.log("User Registered:", response.data);
+
+      // Redirect to login after signup
+      navigate("/login");
 
     } catch (error) {
       console.error(error);
@@ -203,6 +209,22 @@ export default function Signup() {
           <button type="submit" className="signup-btn">
             Create My Account →
           </button>
+
+          {/* 🔥 Login Redirect Section */}
+          <div className="login-section">
+            <p>Already have an account? 😊</p>
+
+            <button
+              type="button"
+              className="login-btn"
+              onClick={() => {
+                speak("Redirecting to login");
+                navigate("/login");
+              }}
+            >
+              Go to Login →
+            </button>
+          </div>
 
         </form>
 

@@ -189,3 +189,32 @@
     grid-template-columns: repeat(4, 1fr);
   }
 }
+/* Login Section */
+.login-section {
+  margin-top: 20px;
+  text-align: center;
+}
+
+/* Button Style */
+.login-btn {
+  margin-top: 8px;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 25px;
+  background: linear-gradient(135deg, #4CAF50, #2ecc71);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Hover Animation */
+.login-btn:hover {
+  transform: scale(1.08);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+}
+
+/* Click Effect */
+.login-btn:active {
+  transform: scale(0.95);
+}
