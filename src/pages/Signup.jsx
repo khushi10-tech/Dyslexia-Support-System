@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import "../styles/Signup.css"; 
 
 export default function Signup() {
 
@@ -15,174 +16,192 @@ export default function Signup() {
   });
 
   const [showPassword, setShowPassword] = useState(false);
+  const [soundOn, setSoundOn] = useState(true);
+
+  // 🔊 Text-to-Speech Function
+  const speak = (text) => {
+    if (!soundOn) return;
+
+    const speech = new SpeechSynthesisUtterance(text);
+    speech.lang = "en-US";
+    speech.rate = 0.9;
+
+    window.speechSynthesis.cancel();
+    window.speechSynthesis.speak(speech);
+  };
 
   const handleChange = (e) => {
-
     const { name, value, type, checked } = e.target;
 
     setFormData({
       ...formData,
       [name]: type === "checkbox" ? checked : value
     });
-
   };
 
   const selectAvatar = (avatar) => {
     setFormData({ ...formData, avatar });
+    speak("Avatar selected");
   };
 
   const handleSubmit = async (e) => {
-
     e.preventDefault();
 
     if (formData.password !== formData.confirmPassword) {
+      speak("Passwords do not match");
       alert("Passwords do not match");
       return;
     }
 
     if (!formData.agree) {
+      speak("Please accept terms and conditions");
       alert("Please accept terms and conditions");
       return;
     }
 
     try {
-
       const response = await axios.post(
         "http://localhost:5000/api/auth/register",
         {
-          name: formData.username,
+          username: formData.username,
           email: formData.email,
           password: formData.password,
           avatar: formData.avatar
         }
       );
 
+      speak("Registration successful");
       alert(response.data.message);
 
       console.log("User Registered:", response.data);
 
     } catch (error) {
-
-  console.error("Signup error:", error);
-
-  if (error.response && error.response.data.message) {
-    alert(error.response.data.message);
-  } else {
-    alert("Server error");
-  }
-
-}
-
+      console.error(error);
+      speak("Signup failed");
+      alert("Signup failed");
+    }
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-purple-400 to-pink-500 p-6">
+    <div className="signup-container">
 
-      <div className="bg-white w-full max-w-3xl rounded-3xl shadow-lg p-10">
+      <div className="signup-card">
 
-        <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-purple-700">
-            Join LearnSmart! 🎉
-          </h1>
-          <p className="text-gray-500 mt-2">
-            Start your learning adventure today
-          </p>
+        {/* 🔊 Sound Toggle */}
+        <div style={{ display: "flex", justifyContent: "flex-end" }}>
+          <button
+            type="button"
+            onClick={() => setSoundOn(!soundOn)}
+            className="sound-btn"
+          >
+            {soundOn ? "🔊" : "🔇"}
+          </button>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-6">
+        {/* Header */}
+        <div className="signup-header">
+          <h1 onMouseEnter={() => speak("Join Learn Smart")}>
+            Join LearnSmart! 🎉
+          </h1>
+          <p>Start your learning adventure today</p>
+        </div>
 
+        {/* Form */}
+        <form onSubmit={handleSubmit} className="signup-form">
+
+          {/* Username */}
           <div>
-            <label className="font-semibold">Choose a Username</label>
+            <label>Choose a Username</label>
             <input
               type="text"
               name="username"
               placeholder="Enter your username"
+              onFocus={() => speak("Enter your username")}
               onChange={handleChange}
-              className="w-full border p-3 rounded-xl mt-2"
             />
           </div>
 
+          {/* Email */}
           <div>
-            <label className="font-semibold">Email Address</label>
+            <label>Email Address</label>
             <input
               type="email"
               name="email"
               placeholder="your.email@example.com"
+              onFocus={() => speak("Enter your email address")}
               onChange={handleChange}
-              className="w-full border p-3 rounded-xl mt-2"
             />
           </div>
 
+          {/* Password */}
           <div>
-            <label className="font-semibold">Create Password</label>
+            <label>Create Password</label>
 
-            <div className="flex">
+            <div className="password-wrapper">
               <input
                 type={showPassword ? "text" : "password"}
                 name="password"
                 placeholder="Create a password"
+                onFocus={() => speak("Create a strong password")}
                 onChange={handleChange}
-                className="w-full border p-3 rounded-l-xl mt-2"
               />
 
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="bg-gray-200 px-4 mt-2 rounded-r-xl"
+                className="password-toggle"
               >
                 👁
               </button>
             </div>
-
           </div>
 
+          {/* Confirm Password */}
           <div>
-            <label className="font-semibold">Confirm Password</label>
-
+            <label>Confirm Password</label>
             <input
               type="password"
               name="confirmPassword"
               placeholder="Confirm your password"
+              onFocus={() => speak("Confirm your password")}
               onChange={handleChange}
-              className="w-full border p-3 rounded-xl mt-2"
             />
           </div>
 
-          <div>
-            <label className="font-semibold">Pick Your Avatar</label>
+          {/* Avatar */}
+          <div onMouseEnter={() => speak("Choose your avatar")}>
+            <label>Pick Your Avatar</label>
 
-            <div className="grid grid-cols-6 gap-4 mt-4">
+            <div className="avatar-grid">
               {avatars.map((avatar, index) => (
-
                 <button
                   key={index}
                   type="button"
                   onClick={() => selectAvatar(avatar)}
-                  className={`text-3xl p-4 rounded-xl border
-                  ${formData.avatar === avatar ? "bg-purple-200" : "bg-gray-100"}`}
+                  className={`avatar-btn ${
+                    formData.avatar === avatar ? "avatar-selected" : ""
+                  }`}
                 >
                   {avatar}
                 </button>
-
               ))}
             </div>
           </div>
 
-          <div className="flex items-center gap-2">
+          {/* Terms */}
+          <div className="checkbox">
             <input
               type="checkbox"
               name="agree"
+              checked={formData.agree}
+              onFocus={() => speak("Accept terms and conditions")}
               onChange={handleChange}
             />
-            <span className="text-sm">
-              I agree to the Terms and Conditions
-            </span>
+            <span>I agree to the Terms and Conditions</span>
           </div>
 
-          <button
-            type="submit"
-            className="w-full bg-gradient-to-r from-purple-500 to-blue-500 text-white py-3 rounded-xl font-semibold"
-          >
+          {/* Submit */}
+          <button type="submit" className="signup-btn">
             Create My Account →
           </button>
 

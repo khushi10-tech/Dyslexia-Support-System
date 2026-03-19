@@ -69,8 +69,8 @@ const Login = () => {
           speakText("Login successful. Redirecting to avatar selection.");
         }
 
-        // ✅ ALWAYS go to avatar page (as you want)
-        navigate("/Avatar");
+         //go to dashboard
+         navigate("/dashboard");
 
       } else {
         alert(response.data.message);
@@ -98,7 +98,7 @@ const Login = () => {
 
         {/* Logo */}
         <div className="logo-box">
-          <img src="/brain.png" alt="logo" />
+          <img src="/Brain.jpg" alt="logo" />
         </div>
 
         <h1 className="title">LearnSmart</h1>

@@ -1,0 +1,191 @@
+/*  Background */
+.signup-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #a855f7, #ec4899);
+  padding: 20px;
+  font-family: "Poppins", sans-serif;
+}
+
+/*  Card */
+.signup-card {
+  background: #fff;
+  width: 100%;
+  max-width: 750px;
+  border-radius: 25px;
+  padding: 35px 40px;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
+  position: relative;
+}
+
+/*  Sound Button */
+.sound-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: #f3f4f6;
+  border: none;
+  border-radius: 10px;
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 18px;
+  transition: 0.3s;
+}
+
+.sound-btn:hover {
+  background: #e5e7eb;
+  transform: scale(1.05);
+}
+
+/*  Header */
+.signup-header {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.signup-header h1 {
+  font-size: 32px;
+  font-weight: 700;
+  color: #7c3aed;
+}
+
+.signup-header p {
+  color: #6b7280;
+  margin-top: 6px;
+}
+
+/*  Form */
+.signup-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* 🏷 Labels */
+.signup-form label {
+  font-weight: 600;
+  color: #111827;
+}
+
+/*  Inputs */
+.signup-form input {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid #d1d5db;
+  margin-top: 5px;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.signup-form input:focus {
+  outline: none;
+  border-color: #8b5cf6;
+  box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.25);
+}
+
+/*  Password */
+.password-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.password-wrapper input {
+  border-radius: 12px 0 0 12px;
+}
+
+.password-toggle {
+  background: #e5e7eb;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 0 12px 12px 0;
+  cursor: pointer;
+  margin-top: 5px;
+}
+
+.password-toggle:hover {
+  background: #d1d5db;
+}
+
+/*  Avatar */
+.avatar-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.avatar-btn {
+  font-size: 22px;
+  padding: 10px;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  background: #f3f4f6;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.avatar-btn:hover {
+  transform: scale(1.1);
+}
+
+.avatar-selected {
+  background: #ddd6fe;
+  border: 1px solid #8b5cf6;
+}
+
+/* ☑ Checkbox */
+.checkbox {
+  display: flex;
+  align-items:flex-start;
+  gap: 10px;
+  font-size: 14px;
+  margin-top: 5px;
+  cursor: pointer;
+}
+.checkbox input {
+  margin-top: 3px;
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+/* Text */
+.checkbox span {
+  color: #374151;
+  line-height: 1.4;
+}
+
+
+/*  Button */
+.signup-btn {
+  margin-top: 10px;
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 14px;
+  font-weight: 600;
+  font-size: 16px;
+  color: white;
+  background: linear-gradient(to right, #9333ea, #3b82f6);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.signup-btn:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+}
+
+/*  Responsive */
+@media (max-width: 600px) {
+  .signup-card {
+    padding: 25px;
+  }
+
+  .avatar-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
