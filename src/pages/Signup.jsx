@@ -78,9 +78,15 @@ export default function Signup() {
 
       console.log("User Registered:", response.data);
 
+<<<<<<< HEAD
       // Redirect to login after signup
       navigate("/login");
 
+=======
+      if (response.data.success) {
+        localStorage.setItem("user", JSON.stringify(response.data.user));
+      }
+>>>>>>> 7ba355db669a8e5b9de5b9a2b3c8e10ab4adc7f5
     } catch (error) {
       console.error(error);
       speak("Signup failed");
